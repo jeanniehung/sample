@@ -16,7 +16,7 @@ if __name__ == '__main__':
     sample.find_longest_palindrome_num('hhkkjshdiuish')
     sample.change('hhGUSDHAGahjksabc')
     print(sample.random_distribution_gift())
-
+    print(sample.distribution_gifts())
 
 
 

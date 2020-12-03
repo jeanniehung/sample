@@ -253,8 +253,20 @@ class Sample(object):
     def distribution_gifts(self):
         giftInDict = {'joy': 'apple', 'sim': 'pear', 'jane': 'banana', 'coco': 'orin'}
         giftOutDict = {}
-        persons = giftInDict.keys()
-        # for person in persons:
+        persons = list(giftInDict.keys())
+        for person in persons:
+            flag = 0
+            if person in giftInDict:
+                flag = 1
+                myGift = giftInDict.pop(person)
+            getGift = giftInDict.popitem()[1]
+            giftOutDict[person] = getGift
+            if flag:
+                giftInDict[person] = myGift
+        return giftOutDict
+
+
+
 
 
 
