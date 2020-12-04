@@ -5,4 +5,9 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("demo")
+    # string = u'default ...'
+    # TutorialList = ['pycharm', 'xmind', 'google', 'ie', 'file']
+    # TutorialDict = {'jane': 21, 'yoyo': 34, 'sim': 17}
+    # List = map(lambda x: x ** 2, range(100))
+    EmptyList = []
+    return render(request, "home.html", {'EmptyList': EmptyList})

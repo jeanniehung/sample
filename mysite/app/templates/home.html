@@ -5,6 +5,31 @@
     <title>Home</title>
 </head>
 <body>
-<p> django </p>
+<!--<p> {{string}}</p>-->
+
+<!--<p>file list:</p>-->
+<!--{% for i in TutorialList %}-->
+<!--<li>{{ i }}</li>-->
+<!--{% endfor %}-->
+
+<!--{% for key, value in TutorialDict.items %}-->
+<!--<li>{{key}}:{{value}}</li>-->
+<!--{% endfor %}-->
+<!--站点：{{ TutorialDict.jane }} 内容：{{ TutorialDict.yoyo }}-->
+
+<!--{% for i in List %}-->
+<!--    {{i}}{% if not forloop.last %},{% endif %}-->
+<!--{% endfor %}-->
+
+
+{% for i in EmptyList %}
+    {{i}}
+{% empty %}
+    {{'Empty'}}
+{% endfor %}
+
+
+
+
 </body>
 </html>
