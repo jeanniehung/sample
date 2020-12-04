@@ -22,6 +22,9 @@ from calc import views as calc_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', calc_views.index, name='home'),
-    path('add/', calc_views.add, name='add'),
-    path('add/<int:a>/<int:b>/', calc_views.add, name='add2')
+    path('add2/', calc_views.add2, name='add2'),
+    # path('add/<int:a>/<int:b>/', calc_views.add, name='add'),
+    path('add/<int:a>/<int:b>/', calc_views.old_add2_redirect),
+    path('new_add/<int:a>/<int:b>/', calc_views.add, name='add'),
+    # url(r'^new_add/(\d+)/(\d+)/$', calc_views.add, name='add'),
 ]
