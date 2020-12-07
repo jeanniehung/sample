@@ -18,10 +18,14 @@ from django.conf.urls import url
 from django.urls import path
 from app import views as app_views
 from calc import views as calc_views
+from main import views as main
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', app_views.index, name='home'),
+    path('', main.index),
+
+    # path('', app_views.index, name='home'),
     path('add2/', calc_views.add2, name='add2'),
     # path('add/<int:a>/<int:b>/', calc_views.add, name='add'),
     path('add/<int:a>/<int:b>/', calc_views.old_add2_redirect),

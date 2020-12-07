@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'app',
     'calc',
     'users',
+    'main',
 ]
 
 AUTH_USER_MODEL = 'users.User'
