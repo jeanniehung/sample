@@ -8,6 +8,23 @@ from django.utils.translation import ugettext_lazy as _
 from .conf import settings
 from .managers import UserInheritanceManager, UserManager
 
+from datetime import datetime
+import json
+import time
+
+
+def birthday_filter(birthday):
+    t = time.time()
+    dt = datetime.fromtimestamp(t)
+    b_year = birthday[:4]
+    b_month = birthday[4:6]
+    b_day = birthday[6:]
+    age = int(dt.year) - int(b_year) - 1
+    if int(b_month) > int(dt.month):
+        if int(b_day) > int(dt.day):
+            age += 1
+    return age
+
 
 class AbstractUser(AbstractBaseUser, PermissionsMixin):
     USERS_AUTO_ACTIVATE = not settings.USERS_VERIFY_EMAIL
@@ -65,5 +82,36 @@ class User(AbstractUser):
     Use this if you don't need to extend User.
     """
 
+    name = models.CharField(max_length=20, default='第一次登陆')
+    sex = models.CharField(max_length=2, default='男')
+    birthday = models.CharField(max_length=30, default='1970-01-01')
+    job_number = models.CharField(max_length=10, default='00001')
+
+    political_landscape = models.CharField(max_length=10, default='群众')
+    political_time = models.CharField(max_length=10, default='1970-01-01')
+
+    job = models.CharField(max_length=30, default='工程师')
+    job_time = models.CharField(max_length=20, default='1970-01-01')
+
+    job_2 = models.CharField(max_length=30, default='员工')
+    id_number = models.CharField(max_length=30, default='00001')
+    schooling = models.CharField(max_length=30, default='本科')
+    school = models.CharField(max_length=30, default='北京大学')
+    graduate_time = models.CharField(max_length=30, default='1970-01-01')
+    job_join_time = models.CharField(max_length=30, default='1970-01-01')
+    team_belong = models.CharField(max_length=20, default='OOS')
+
+    phone = models.CharField(max_length=11, default='17890987654')
+
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'
+
+    def __str__(self):
+        return self.name
+
+    def age(self):
+        return birthday_filter(self.birthday)
+
+
+
+

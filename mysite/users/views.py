@@ -6,6 +6,7 @@ from django.template.response import TemplateResponse
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import render
 
 from .compat import urlsafe_base64_decode
 from .conf import settings
@@ -167,3 +168,8 @@ def activation_complete(request,
     if extra_context is not None:  # pragma: no cover
         context.update(extra_context)
     return TemplateResponse(request, template_name, context)
+
+
+def index(request):
+    return render(request, 'base.html')
+

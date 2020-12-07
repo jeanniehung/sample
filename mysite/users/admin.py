@@ -36,11 +36,20 @@ class UserModelFilter(admin.SimpleListFilter):
         else:
             return queryset
 
+'''
+
+'name', 'sex', 'birthday', 'job_number', 'political_landscape',
+                       'political_time', 'job', 'job_time', 'job_2', 'id_number', 'schooling', 'school',
+                       'graduate_time', 'job_join_time', 'team_belong', 'phone'
+                       '''
+
 
 class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {
-            'fields': ('email', 'password')
+            'fields': ('email', 'password', 'name', 'birthday', 'job_number', 'political_landscape',
+                       'political_time', 'job', 'job_time', 'job_2', 'id_number', 'schooling', 'school',
+                       'graduate_time', 'job_join_time', 'team_belong', 'phone')
         }),
         (_('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser',
