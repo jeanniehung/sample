@@ -26,11 +26,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', main.index),
     path('accounts/', include('users.urls')),
-
-    # path('', app_views.index, name='home'),
-    path('add2/', calc_views.add2, name='add2'),
-    # path('add/<int:a>/<int:b>/', calc_views.add, name='add'),
-    path('add/<int:a>/<int:b>/', calc_views.old_add2_redirect),
-    path('new_add/<int:a>/<int:b>/', calc_views.add, name='add'),
-    # url(r'^new_add/(\d+)/(\d+)/$', calc_views.add, name='add'),
 ]

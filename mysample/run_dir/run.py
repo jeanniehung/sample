@@ -17,6 +17,11 @@ if __name__ == '__main__':
     sample.change('hhGUSDHAGahjksabc')
     print(sample.random_distribution_gift())
     print(sample.distribution_gifts())
+    arr = [23, 2, 56, 46, 67, 60]
+    n = len(arr)
+    sample.quick(arr, 0, n-1)
+    for i in range(n):
+        print(arr[i], end=' ')
 
 
 

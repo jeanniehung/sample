@@ -265,6 +265,23 @@ class Sample(object):
                 giftInDict[person] = myGift
         return giftOutDict
 
+    def partition(self, alist, low, high):
+        i = low-1
+        pivot = alist[high]
+        for j in range(low, high):
+            if alist[j] < pivot:
+                i += 1
+                alist[i], alist[j] = alist[j], alist[i]
+        alist[i+1], alist[high] = alist[high], alist[i+1]
+        return i+1
+
+    def quick(self, alist, low, high):
+        if low < high:
+            pi = self.partition(alist, low, high)
+            self.quick(alist, low, pi-1)
+            self.quick(alist, pi+1, high)
+
+
 
 
 
