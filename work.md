@@ -129,8 +129,6 @@ alter table tb_score add constraint fk_score_sid foreign key (sid) references tb
 alter table tb_score add constraint fk_score_cid foreign key (cid) references tb_course (couid);  
 
 
-
-
 -- 插入学院数据  
 insert into tb_college (collname, collmaster, collweb) values 
 ('计算机学院', '左冷禅', 'http://www.abc.com'),
@@ -278,6 +276,22 @@ B/S **是「查询」式的通讯**，客户端向服务器查询一些信息，
 对于多核CPU，利用多进程+协程的方式，能充分利用CPU，获得极高的性能。  
 
 #### 生成器和迭代器
+迭代器：它是一个带状态的对象，它能在你调用next()方法的时候返回容器中的下一个值，任何实现了__iter__()和__next__()方法的对象都是迭代器，__iter__返回迭代器自身，__next__返回容器中的下一个值，如果容器中没有更多元素了，则抛出Stop Iteration异常。  
+生成器：在Python中，使用了yield的函数被称为生成器（generator），跟普通函数不同的是，生成器是一个返回迭代器的函数，只能用于迭代操作，更简单点理解生成器就是一个特殊的迭代器，调用一个生成器函数，返回的是一个迭代器对象。它不需要再像上面的类一样写__iter__()和__next__()方法了，只需要一个yiled关键字，每次遇到yield时函数会暂停并保存当前所有的运行信息，返回yield的值,并在下一次执行next()方法时从当前位置继续运行（这也是生成器的主要使用场景）。  
+
+集合时无序的，因此也没有索引，要访问元素，有两种方法：  
+1. 转换为列表，list()
+2. 转换为迭代器，iter()
+
+迭代器的应用：  
+不需要事先准备好整个迭代过程中的所有元素，迭代器仅仅在迭代到某个元素时才计算该元素，应用于遍历一些巨大的或者无限的集合  
+
+
+
+
+
+
+
 
 
 
