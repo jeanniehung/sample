@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>board</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Board</th>
+        <th>Topic</th>
+        <th>Post</th>
+        <th>Last Post</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        {% for board in boards %}
+        <td>
+            {{board.name}}<br>
+            <small style="color: #8888">{{board.description}}</small>
+        </td>
+        <td>0</td>
+        <td>1</td>
+        <td></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
