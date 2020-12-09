@@ -26,7 +26,7 @@ SECRET_KEY = '2esql9&h1=cv7o4mibjb$10f8&#j44dkalc(h&^5w7+ejpw@um'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['testserver']  # <-加入'testserver'
+ALLOWED_HOSTS = ['testserver', '127.0.0.1']  # <-加入'testserver'
 
 SILENCED_SYSTEM_CHECKS = ['fields.E300', 'fields.E307', 'fields.E304']
 
