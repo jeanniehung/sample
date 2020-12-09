@@ -1,33 +1,45 @@
-<!DOCTYPE html>
+{% load static %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
-<h1>board</h1>
-<table border="1">
-    <thead>
-    <tr>
-        <th>Board</th>
-        <th>Topic</th>
-        <th>Post</th>
-        <th>Last Post</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        {% for board in boards %}
-        <td>
-            {{board.name}}<br>
-            <small style="color: #8888">{{board.description}}</small>
-        </td>
-        <td>0</td>
-        <td>1</td>
-        <td></td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
+<div class="container">
+    <!--    <ol class="breadcrumb">-->
+    <!--        <li class="breadcrumb-item"><a href="#">Board</a></li>-->
+    <!--        <li class="breadcrumb-item"><a href="#">Post</a></li>-->
+    <!--        <li class="breadcrumb-item"><a href="#">Topic</a></li>-->
+    <!--        <li class="breadcrumb-item active">Last Post</li>-->
+    <!--    </ol>-->
+    <ol class="breadcrumb my-5">
+        <li class="breadcrumb-item active">Boards</li>
+    </ol>
+    <table class="table">
+        <thead class="thead-inverse">
+        <tr>
+            <th>Board</th>
+            <th>Topic</th>
+            <th>Post</th>
+            <th>Last Post</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for board in boards %}
+            <td>
+                {{board.name}}<br>
+                <small class="text-muted d-block">{{board.description}}</small>
+            </td>
+            <td class="align-middle">0</td>
+            <td class="align-middle">1</td>
+            <td></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>
