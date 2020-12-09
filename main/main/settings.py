@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SILENCED_SYSTEM_CHECKS = ['fields.E300', 'fields.E307', 'fields.E304']
 
 # Application definition
 

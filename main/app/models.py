@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
-class Broad(models.Model):
+class Board(models.Model):
     name = models.CharField(max_length=30, unique=True)
     description = models.CharField(max_length=100)
 
@@ -13,7 +13,7 @@ class Topic(models.Model):
     subject = models.CharField(max_length=255)
     last_update = models.DateTimeField(auto_now_add=True)
     board = models.ForeignKey('Board', on_delete=models.CASCADE, verbose_name='topics')
-    starter = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='topics')
+    starter = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='topics')
 
 
 class Post(models.Model):
