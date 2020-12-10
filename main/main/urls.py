@@ -21,5 +21,5 @@ from app import views as app
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^index/$', app.index, name='app-index'),
-    url(r'^boards/(?P<pk>\d+)/$', views.board_topics, name='board_topics')
+    url(r'^boards/(?P<pk>\d+)/$', app.board_topics, name='board_topics')
 ]
