@@ -7,7 +7,7 @@ from .models import Board, Post, Topic
 # Create your views here.
 
 
-def index(request):
+def home(request):
     boards = Board.objects.all()
     # response_html = '<br>'.join('%s' %id for id in boards)
     # return HttpResponse(response_html)
@@ -24,6 +24,9 @@ def board_topics(request, pk):
 
 
 def new_topic(request, pk):
+    # board = get_object_or_404(Board, pk=pk)
+    # return render(request, 'new_topic.html', {'board': board})
+
     board = get_object_or_404(Board, pk=pk)
 
     if request.method == 'POST':

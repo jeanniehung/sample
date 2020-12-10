@@ -20,7 +20,7 @@ from app import views as app
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$', app.index, name='home'),
+    url(r'^$', app.home, name='home'),
     url(r'^boards/(?P<pk>\d+)/$', app.board_topics, name='board_topics'),
     url(r'^boards/(?P<pk>\d+)/new/$', app.new_topic, name='new_topic'),
 ]

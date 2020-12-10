@@ -31,7 +31,7 @@ class IndexTest(TestCase):
 
     def test_home_url_resolves_home_view(self):
         view = resolve('/')  #ResolverMatch(func=app.views.index, args=(), kwargs={}, url_name=app-index, app_names=[], namespaces=[], route=^index/$)
-        self.assertEqual(view.func, views.index)
+        self.assertEqual(view.func, views.home)
 
     def test_home_view_contains_link_to_topics_page(self):
         board_topics_url = reverse('board_topics', kwargs={'pk': self.board.pk})
