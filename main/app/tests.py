@@ -10,6 +10,11 @@ from .models import Board
 
 class IndexTest(TestCase):
 
+    def setUp(self) -> None:
+        self.board = Board.objects.create(name='kio', description='kiodescription')
+        self.url = reverse('home')
+        self.response = client.Client().get(self.url)
+
     def test_index_view_status_code(self):
         '''
         In [1]: from django.urls import reverse
@@ -19,15 +24,18 @@ class IndexTest(TestCase):
 
         '''
         # url = reverse(views.index)  # url(r'^index/$', app.index, name='app-index'),
-        url = reverse('app-index')
-        c = client.Client()
-        # response = c.get('/index/')
-        response = c.get(url)
-        self.assertEqual(response.status_code, 200)
+        # url = reverse('home')
+        # c = client.Client()
+        # response = c.get(url)  # /index/
+        self.assertEqual(self.response.status_code, 200)
 
     def test_home_url_resolves_home_view(self):
-        view = resolve('/index/')  #ResolverMatch(func=app.views.index, args=(), kwargs={}, url_name=app-index, app_names=[], namespaces=[], route=^index/$)
+        view = resolve('/')  #ResolverMatch(func=app.views.index, args=(), kwargs={}, url_name=app-index, app_names=[], namespaces=[], route=^index/$)
         self.assertEqual(view.func, views.index)
+
+    def test_home_view_contains_link_to_topics_page(self):
+        board_topics_url = reverse('board_topics', kwargs={'pk': self.board.pk})
+        self.assertContains(self.response, 'href="{0}"'.format(board_topics_url))
 
 
 class BoardTopicsTests(TestCase):
@@ -41,8 +49,22 @@ class BoardTopicsTests(TestCase):
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
+    def test_board_topics_view_not_find_status_code(self):
+        url = reverse('board_topics', kwargs={'pk': 99})
+        c = client.Client()
+        response = c.get(url)
+        self.assertEqual(response.status_code, 404)
+
     def test_board_topics_url_resolves_home_view(self):
         view = resolve('/boards/1/')
         self.assertEqual(view.func, views.board_topics)
+
+    def test_board_topics_view_contains_link_back_to_homepage(self):
+        board_topic_url = reverse('board_topics', kwargs={'pk': 1})
+        response = client.Client().get(board_topic_url)
+        homepage_url = reverse('home')
+        self.assertContains(response, 'href="{0}"'.format(homepage_url))
+
+
 
 
