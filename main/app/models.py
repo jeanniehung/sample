@@ -18,6 +18,9 @@ class Topic(models.Model):
     board = models.ForeignKey('Board', on_delete=models.CASCADE, verbose_name='topics')
     starter = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='topics')
 
+    def __str__(self):
+        return self.subject
+
 
 class Post(models.Model):
     message = models.TextField(max_length=4000)
