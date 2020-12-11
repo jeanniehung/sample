@@ -12,15 +12,9 @@ class Board(models.Model):
 
 class Topic(models.Model):
     subject = models.CharField(max_length=255)
-<<<<<<< HEAD
-    last_update = models.DateTimeField(auto_now_add=True)
-    board = models.ForeignKey('Board', on_delete=models.CASCADE, verbose_name='topics')
-    starter = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='topics')
-=======
     last_updated = models.DateTimeField(auto_now_add=True)
     board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='topics')
     starter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='topics')
->>>>>>> ead54a949dfc02b6e8eb91ad98e095bf5efbcaea
 
 
 class Post(models.Model):
