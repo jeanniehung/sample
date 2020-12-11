@@ -41,7 +41,7 @@ class IndexTest(TestCase):
 class BoardTopicsTests(TestCase):
 
     def setUp(self) -> None:
-        Board.objects.create(name='ZEGO', description='zegodescrptions')
+        Board.objects.create(name='klook', description='klookdescrptions')
 
     def test_board_topics_view_success_status_code(self):
         url = reverse('board_topics', kwargs={'pk': 1})
@@ -51,8 +51,10 @@ class BoardTopicsTests(TestCase):
 
     def test_board_topics_view_not_find_status_code(self):
         url = reverse('board_topics', kwargs={'pk': 99})
+        print(url)
         c = client.Client()
         response = c.get(url)
+        print(response)
         self.assertEqual(response.status_code, 404)
 
     def test_board_topics_url_resolves_home_view(self):
@@ -64,6 +66,14 @@ class BoardTopicsTests(TestCase):
         response = client.Client().get(board_topic_url)
         homepage_url = reverse('home')
         self.assertContains(response, 'href="{0}"'.format(homepage_url))
+
+    def test_board_topics_view_contains_navigation_links(self):
+        board_topic_url = reverse('board_topics', kwargs={'pk': 1})
+        home_url = reverse('home')
+        new_topic_url = reverse('new_topic', kwargs={'pk': 1})
+        board_topic_response = client.Client().get(board_topic_url)
+        self.assertContains(board_topic_response, 'href="{0}"'.format(home_url))
+        self.assertContains(board_topic_response, 'href="{0}"'.format(new_topic_url))
 
 
 class NewTopicsTests(TestCase):
@@ -77,9 +87,9 @@ class NewTopicsTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_new_topic_view_not_found_status_code(self):
-        url = reverse('new_topic', kwargs={'pk': 1})
+        url = reverse('new_topic', kwargs={'pk': 99})
         response = client.Client().get(url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 404)
 
     def test_new_topics_url_resolves_home_view(self):
         view = resolve('/boards/1/new/')
