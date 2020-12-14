@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from boards import views as boards_views
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', boards_views.home, name='home')
+    path('', boards_views.home, name='home'),
+    # url(r'^boards/(?P<pk>\d+)/$', boards_views.board_topics, name='board_topics'),
+    path("boards/<int:pk>/", boards_views.board_topics, name="board_topics"),
 ]
