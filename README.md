@@ -1,5 +1,8 @@
 # sample
 https://foofish.net/django-tutorial-01.html
+https://www.liujiangblog.com/course/django/89
+
+
 
 在for循环中还有很多有用的东西，如下：
 
