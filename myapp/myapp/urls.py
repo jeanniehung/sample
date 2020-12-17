@@ -16,13 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
-from boards import views as boards_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', boards_views.index, name='index'),
-    path('index/', boards_views.index, name='index'),
-    path('<int:question_id>/', boards_views.detail, name='detail'),
-    path('<int:question_id>/results/', boards_views.results, name='results'),
-    path('<int:question_id>/vote/', boards_views.vote, name='vote'),
 ]
