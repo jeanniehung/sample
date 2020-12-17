@@ -5,13 +5,14 @@
       <excludeFolder url="file://$MODULE_DIR$/Development/mysite" />
       <excludeFolder url="file://$MODULE_DIR$/accounts" />
       <excludeFolder url="file://$MODULE_DIR$/main" />
+      <excludeFolder url="file://$MODULE_DIR$/myapp" />
       <excludeFolder url="file://$MODULE_DIR$/mysite" />
       <excludeFolder url="file://$MODULE_DIR$/mysite/data" />
       <excludeFolder url="file://$MODULE_DIR$/mysite/sample" />
       <excludeFolder url="file://$MODULE_DIR$/myvenv" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7 (myvenv)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (venv)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">
