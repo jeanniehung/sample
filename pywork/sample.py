@@ -212,3 +212,36 @@ def bubble3(alist):
 Dlist = [12, 3, 4, 78, 9, 45]
 print(bubble3(Dlist))
 
+
+def select_sort(alist):
+    '''
+    选择
+    '''
+    for i in range(len(alist)):
+        min = i
+        for j in range(i+1, len(alist)):
+            if alist[j] < alist[min]:
+                j, min = min, j
+        if min != i:
+            alist[min], alist[i] = alist[i], alist[min]
+    return alist
+
+
+Alist = [12, 34, 2, 32, 90, 6]
+print(select_sort(Alist))
+
+
+def insert_sort(alist):
+    '''
+    插入
+    '''
+    for i in range(len(alist)):
+        j = i
+        while j>0 and alist[j] < alist[j-1]:
+            alist[j], alist[j-1] = alist[j-1], alist[j]
+            j -= 1
+    return alist
+
+
+Blist = [12, 34, 2, 32, 90, 6]
+print(insert_sort(Blist))
