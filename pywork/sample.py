@@ -1,14 +1,77 @@
+def huiwen(str):
+    '''
+    判断是否是回文
+    '''
+    alist = list(str)
+    blist = list(reversed(str))
+    if alist == blist:
+        print('Y')
+    else:
+        print('N')
+
+
+huiwen('ssllss')
+huiwen('jkllko')
+
+print(191 % 10)
+print(191 // 100)
+
+
+def count_huiwen_number():
+    '''
+    计算1000以内的回文
+    '''
+    count = 0
+    alist = []
+    for i in range(10):
+        count += 1
+        alist.append(i)
+    for i in range(10, 100):
+        if i % 11 == 0:
+            count += 1
+            alist.append(i)
+    for i in range(100, 1000):
+        a = i % 10
+        b = i // 100
+        if a == b:
+            count += 1
+            alist.append(i)
+    return [alist, count]
+
+
+print(count_huiwen_number())
+
+
+def long_huiwen_str(astr):
+    '''
+    最长回文
+    '''
+    size = len(astr)
+    found = 0
+    for sub_size in range(size, -1, -1):
+        for offset in range(0, size-sub_size+1):
+            sub_string = astr[offset:offset+sub_size]
+            if sub_string[::-1] == sub_string:
+                print(sub_string)
+                found = 1
+        if found == 1:
+            break
+
+
+long_huiwen_str('hkhkahjkkjh')
+
+
 def counter(alist):
     dict = {}
     for a in alist:
         dict[a] = dict.get(a, 0)+1
     return dict
 
+
 Alist = [1, 4, 1, 2, 3, 1, 2]
 print(counter(Alist))
 
 
-from collections import Counter
 def count(ss):
     cnt = Counter(ss)
     return cnt
@@ -75,32 +138,41 @@ def change():
 print(change())
 
 def bubble(alist):
-    count = 0
     for i in range(len(alist)-1):
         for j in range(len(alist)-i-1):
             if alist[j] > alist[j+1]:
                 alist[j], alist[j+1] = alist[j+1], alist[j]
-        count += 1
-    return [alist, count]
+    return alist
 
 
-def bubble_optimization(alist):
-    count = 0
-    for i in range(len(alist)-1):
+Alist = [12, 45, 2, 34, 90, 21]
+print(bubble(Alist))
+
+
+def bubble1(blist):
+    '''
+    [2, 3, 1, 4, 5]
+    '''
+    for i in range(len(blist)-1):
         isOrdered = True
-        for j in range(len(alist)-i-1):
-            if alist[j] > alist[j+1]:
-                alist[j], alist[j+1] = alist[j+1], alist[j]
+        for j in range(len(blist)-i-1):
+            if blist[j] > blist[j+1]:
+                blist[j], blist[j+1] = blist[j+1], blist[j]
                 isOrdered = False
         if isOrdered:
             break
-        else:
-            count += 1
-    return [alist, count]
+    return blist
 
 
-def bubble_optimization2(alist):
-    count = 0
+Blist = [12, 45, 2, 34, 90, 21]
+print(bubble1(Blist))
+
+
+def bubble2(alist):
+    '''
+    鸡尾酒排序
+    [2, 3, 4, 5, 1]
+    '''
     for i in range(len(alist)-1):
         isOrdered = True
         for j in range(len(alist)-i-1):
@@ -114,28 +186,62 @@ def bubble_optimization2(alist):
                     isOrdered = True
         if isOrdered:
             break
-        else:
-            count += 1
-    return [alist, count]
+    return alist
 
-def bubble_optimization3(alist):
-    lastChangeIndex = 0  # 最后一次交换元素的位置
-    unorderedBorder = len(alist)-1  # 当前趟未排序位置
+
+Clist = [12, 45, 2, 34, 90, 21]
+print(bubble2(Clist))
+
+
+def bubble3(alist):
+    lastChangeIndex = 0
+    unOrderBorder = len(alist)-1
     for i in range(len(alist)-1):
         isOrdered = True
-        for j in range(unorderedBorder-1):
+        for j in range(unOrderBorder):
             if alist[j] > alist[j+1]:
                 alist[j], alist[j+1] = alist[j+1], alist[j]
-                isOrdered = False  # 发生一个元素交换说明此趟排序未完成
-                lastChangeIndex = j  # 记录最后一次交换元素的位置
-        unorderedBorder = lastChangeIndex
+                isOrdered = False
+                lastChangeIndex = j
+        unOrderBorder = lastChangeIndex
         if isOrdered:
             break
-        return alist
+    return alist
 
 
+Dlist = [12, 3, 4, 78, 9, 45]
+print(bubble3(Dlist))
 
-print(bubble([12, 3, 4, 78, 9, 45]))
-print(bubble_optimization([12, 3, 4, 78, 9, 45]))
-print(bubble_optimization2([12, 3, 4, 78, 9, 45]))
-print(bubble_optimization3([12, 3, 4, 78, 9, 45]))
+
+def select_sort(alist):
+    '''
+    选择
+    '''
+    for i in range(len(alist)):
+        min = i
+        for j in range(i+1, len(alist)):
+            if alist[j] < alist[min]:
+                j, min = min, j
+        if min != i:
+            alist[min], alist[i] = alist[i], alist[min]
+    return alist
+
+
+Alist = [12, 34, 2, 32, 90, 6]
+print(select_sort(Alist))
+
+
+def insert_sort(alist):
+    '''
+    插入
+    '''
+    for i in range(len(alist)):
+        j = i
+        while j>0 and alist[j] < alist[j-1]:
+            alist[j], alist[j-1] = alist[j-1], alist[j]
+            j -= 1
+    return alist
+
+
+Blist = [12, 34, 2, 32, 90, 6]
+print(insert_sort(Blist))
