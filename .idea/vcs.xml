@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/liveroom-topics-android" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/liveroom-topics-ios-mac" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/liveroom-topics-windows" vcs="Git" />
   </component>
 </project>
