@@ -20,8 +20,8 @@ from polls import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # 例如: /polls/
-    # path('', views.index, name='index'),
-    path('', views.IndexView.as_view(), name='index'),
+    path('', views.index, name='index'),
+    # path('', views.IndexView.as_view(), name='index'),
     # 例如: /polls/5/
     path('<int:question_id>/', views.detail, name='detail'),
     # 例如: /polls/5/results/
