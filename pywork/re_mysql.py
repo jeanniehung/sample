@@ -37,11 +37,11 @@ primary key (collid)
 
 cursor.execute(tb_college)
 
-uni_college_collname = """
+sql = """
 alter table tb_college add constraint uni_college_collname unique (collname);  
 """
 
-cursor.execute(uni_college_collname)
+cursor.execute(sql)
 
 '------------------------------------------------------------------------------'
 
@@ -70,15 +70,15 @@ birth date not null comment '出生日期',
 addr varchar(255) default '' comment '籍贯',
 collid int not null comment '所属学院编号',
 primary key (stuid)
-);  
+);
 """
 cursor.execute(tb_student)
 
-foreign_key = """
-alter table tb_student add constraint fk_student_collid foreign key (collid) references tb_college (collid);  
+sql = """
+alter table tb_student add constraint fk_student_collid foreign key (collid) references tb_college (collid);
 """
 
-cursor.execute(foreign_key)
+cursor.execute(sql)
 
 '-------------------------------------------------------------------------------------------'
 
@@ -104,22 +104,22 @@ teaid int not null comment '教师工号',
 tname varchar(20) not null comment '教师姓名',
 title varchar(10) default '' comment '职称',
 collid int not null comment '所属学院编号'
-);  
+);
 """
 
 cursor.execute(tb_teacher)
 
-primary_key = """
-alter table tb_teacher add constraint pk_teacher primary key (teaid);  
+sql = """
+alter table tb_teacher add constraint pk_teacher primary key (teaid);
 """
 
-cursor.execute(primary_key)
+cursor.execute(sql)
 
-foreign_key_primary = """
-alter table tb_teacher add constraint fk_teacher_collid foreign key (collid) references tb_college (collid);  
+sql = """
+alter table tb_teacher add constraint fk_teacher_collid foreign key (collid) references tb_college (collid);
 """
 
-cursor.execute(foreign_key_primary)
+cursor.execute(sql)
 
 '---------------------------------------------------------------------------------------'
 
@@ -146,16 +146,16 @@ cname varchar(50) not null comment '课程名称',
 credit tinyint not null comment '学分',
 teaid int not null comment '教师工号',
 primary key (couid)
-);  
+);
 """
 
 cursor.execute(tb_course)
 
-cours_foreogn_key = """
-alter table tb_course add constraint fk_course_tid foreign key (teaid) references tb_teacher (teaid);  
+sql = """
+alter table tb_course add constraint fk_course_tid foreign key (teaid) references tb_teacher (teaid);
 """
 
-cursor.execute(cours_foreogn_key)
+cursor.execute(sql)
 
 '--------------------------------------------------------------------------------'
 
@@ -183,21 +183,21 @@ cid int not null comment '课程编号',
 seldate date comment '选课时间日期',
 mark decimal(4,1) comment '考试成绩',
 primary key (scid)
-);  
+);
 """
 
 cursor.execute(tb_score)
 
-score_foreign_key = """
-alter table tb_score add constraint fk_score_sid foreign key (sid) references tb_student (stuid);  
+sql = """
+alter table tb_score add constraint fk_score_sid foreign key (sid) references tb_student (stuid);
 """
 
-cursor.execute(score_foreign_key)
+cursor.execute(sql)
 
-score_forengn_key_2 = """
-alter table tb_score add constraint fk_score_cid foreign key (cid) references tb_course (couid);  
+sql = """
+alter table tb_score add constraint fk_score_cid foreign key (cid) references tb_course (couid);
 """
-cursor.execute(score_forengn_key_2)
+cursor.execute(sql)
 
 '====================================================================================='
 
@@ -222,26 +222,26 @@ insert into tb_student (stuid, sname, gender, birth, addr, collid) values
 (2035, '东方不败', 1, '1988-6-30', null, 2),
 (3011, '林震南', 1, '1985-12-12', '福建莆田', 3),
 (3755, '项少龙', 1, '1993-1-25', null, 3),
-(3923, '杨不悔', 0, '1985-4-17', '四川成都', 3);  
-
+(3923, '杨不悔', 0, '1985-4-17', '四川成都', 3);
+#
 """
 cursor.execute(sql)
 db.commit()
 
 sql = """
-insert into tb_teacher (teaid, tname, title, collid) values 
+insert into tb_teacher (teaid, tname, title, collid) values
 (1122, '张三丰', '教授', 1),
 (1133, '宋远桥', '副教授', 1),
 (1144, '杨逍', '副教授', 1),
 (2255, '范遥', '副教授', 2),
-(3366, '韦一笑', '讲师', 3);  
+(3366, '韦一笑', '讲师', 3);
 """
 cursor.execute(sql)
 db.commit()
 
 
 sql = """
-insert into tb_course (couid, cname, credit, teaid) values 
+insert into tb_course (couid, cname, credit, teaid) values
 (1111, 'Python程序设计', 3, 1122),
 (2222, 'Web前端开发', 2, 1122),
 (3333, '操作系统', 4, 1122),
@@ -250,14 +250,14 @@ insert into tb_course (couid, cname, credit, teaid) values
 (6666, '算法和数据结构', 3, 1144),
 (7777, '经贸法语', 3, 2255),
 (8888, '成本会计', 2, 3366),
-(9999, '审计学', 3, 3366);  
+(9999, '审计学', 3, 3366);
 """
 
 cursor.execute(sql)
 db.commit()
 
 sql = """
-insert into tb_score (sid, cid, seldate, mark) values 
+insert into tb_score (sid, cid, seldate, mark) values
 (1001, 1111, '2017-09-01', 95),
 (1001, 2222, '2017-09-01', 87.5),
 (1001, 3333, '2017-09-01', 100),
@@ -275,7 +275,7 @@ insert into tb_score (sid, cid, seldate, mark) values
 (2035, 9999, date(now()), null),
 (3755, 1111, date(now()), null),
 (3755, 8888, date(now()), null),
-(3755, 9999, '2017-09-01', 92);  
+(3755, 9999, '2017-09-01', 92);
 """
 cursor.execute(sql)
 db.commit()
