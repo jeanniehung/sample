@@ -103,17 +103,18 @@ create table tb_teacher
 teaid int not null comment '教师工号',
 tname varchar(20) not null comment '教师姓名',
 title varchar(10) default '' comment '职称',
-collid int not null comment '所属学院编号'
+collid int not null comment '所属学院编号',
+primary key (teaid)
 );
 """
 
 cursor.execute(tb_teacher)
 
-sql = """
-alter table tb_teacher add constraint pk_teacher primary key (teaid);
-"""
-
-cursor.execute(sql)
+# sql = """
+# alter table tb_teacher add constraint pk_teacher primary key (teaid);
+# """
+#
+# cursor.execute(sql)
 
 sql = """
 alter table tb_teacher add constraint fk_teacher_collid foreign key (collid) references tb_college (collid);
