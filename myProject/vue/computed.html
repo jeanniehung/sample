@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Computed</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+        <style>
+            .php {
+                color: cornflowerblue;
+            }
+            .javascript {
+                color: gold;
+            }
+            .golang {
+                color: aqua;
+            }
+            .python {
+                color: darkgreen;
+            }
+            .java {
+                color: deeppink;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <div id="app">
+            <p>Web开发框架: </p>
+            <ul>
+                <li v-for="framework in frameworks" v-bind:class="framework.language">
+                    {{ framework.name }}
+                </li>
+            </ul>
+            <hr>
+            框架：<input v-model="newFramework" name="framework" >
+            语言：
+            <select v-model="newLanguage">
+                <option v-for="language in languages" v-text="language"></option>
+            </select>
+            <button @click="addFramework">新增框架</button>
+
+        </div>
+
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    frameworks: [
+                        {'name': 'Laravel', 'language': 'php'},
+                        {'name': 'Vue', 'language': 'javascript'},
+                        {'name': 'Gin', 'language': 'golang'},
+                        {'name': 'Flask', 'language': 'python'},
+                        {'name': 'Spring', 'language': 'java'},
+                    ],
+                    languages: [
+                        'php', 'golang', 'javascript', 'python', 'java'
+                    ],
+                    newFramework: '',
+                    newLanguage: '',
+                },
+                methods: {
+                    addFramework () {
+                        this.frameworks.push(
+                                {'name': this.newFramework, 'language': this.newLanguage}
+                            );
+                    }
+                }
+            });
+
+
+        </script>
+    </body>
+</html>
