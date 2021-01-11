@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Bind</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+        <style>
+            .color-red {
+                color: red;
+            }
+            .color-orange {
+                color: orange;
+            }
+            .color-yello {
+                color: yellow;
+            }
+            .color-green {
+                color: green;
+            }
+            .color-aqua {
+                color: aqua;
+            }
+            .color-blue {
+                color: blue;
+            }
+            .color-pueple {
+                color: purple;
+            }
+            h1 {
+                width: 120px;
+                border: 3px dotted;
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <p>属性绑定：</p>
+            <a href="https://xueyuanjun.com" v-bind:title="title">Runboo</a>
+            <hr>
+            <p>类名属性：</p>
+            <h1 v-bind:class="curClass">Runboo</h1>
+            <button v-on:click="toggleClass">change color</button>
+
+        </div>
+        <script>
+            Array.prototype.getRandomElemen = function () {
+                return this[Math.floor(Math.random() * this.length)]
+            }
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    title: '我们致力于提供更优的资源',
+                    classes: [
+                        'color-red',
+                        'color-orange',
+                        'color-yellow',
+                        'color-green',
+                        'color-aqua',
+                        'color-blue',
+                        'color-pueple'
+                    ],
+                    curClass: 'color-red'
+                },
+                methods: {
+                    toggleClass () {
+                        this.curClass = this.classes.getRandomElemen();
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
