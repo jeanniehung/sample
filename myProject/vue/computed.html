@@ -28,7 +28,7 @@
         <div id="app">
             <p>Web开发框架: </p>
             <ul>
-                <li v-for="framework in frameworks" v-bind:class="framework.language">
+                <li v-for="framework in sortedFrameworks" v-bind:class="framework.language">
                     {{ framework.name }}
                 </li>
             </ul>
@@ -64,6 +64,30 @@
                         this.frameworks.push(
                                 {'name': this.newFramework, 'language': this.newLanguage}
                             );
+                        // 对 frameworks 数组按照 language 字段做升序排序
+                        // this.frameworks.sort((a, b) => {
+                        //     if (a.language < b.language) {
+                        //         return -1;
+                        //     } else if (a.language > b.language) {
+                        //         return 1;
+                        //     } else {
+                        //         return 0;
+                        //     }
+                        // });
+                    }
+                },
+                computed: {
+                     // 定义一个计算属性 sortedFrameworks
+                    sortedFrameworks() {
+                        return this.frameworks.sort((a, b) => {
+                            if (a.language < b.language) {
+                                return -1;
+                            } else if (a.language > b.language) {
+                                return 1;
+                            } else {
+                                return 0;
+                            }
+                        });
                     }
                 }
             });
